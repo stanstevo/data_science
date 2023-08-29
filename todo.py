@@ -31,7 +31,6 @@ Testing and Submission:
     Submission:
         Submit the link to your GitHub repository for grading8
 '''
-tasks = []
 def add_tasks(tasks: list, task_name: str) -> list:
     """
     Add a new task to the list of tasks.
@@ -61,20 +60,65 @@ def mark_completed(tasks: list, task_index: int) -> None:
         print("You have entered an invalid index")
             
     
-def get_tasks():
-    return None
-def remove_task():  
-    return None
+def list_tasks(tasks: list) -> None:
+    """
+    List all tasks.
 
+    Args:
+        tasks (list): List of tasks.
+    """
+    for index, task in enumerate(tasks):
+        print(f"{index}. {task['task_name']} - {task['completed']}"):
 
-def show_menu() -> int:
-    print(f'Please select an action\n "1. Add Task"\n "2. Mark Task as Completed"\n "3. List Tasks"\n "4. Remove Task"\n "5. Quit"\n')
-    option = int(input("Please select an action: "))
-    return option
+    
+def remove_task(tasks: list, task_index: int) -> None:
+    """
+    Remove a task.
 
+    Args:
+        tasks (list): List of tasks.
+        task_index (int): Index of the task to be removed.
+    """
+    if task_index => 0 and task_index < len(tasks):
+        tasks.pop(task_index)
+        print("Task removed!")
+    else:
+        print("You have entered an invalid index"):  
+
+def show_menu():
+    '''
+    Display a welcome message and a list of available actions.
+    
+    Args:
+        None
+    
+    Returns:
+        None
+    
+    Raises:
+        None
+    
+    Example:
+        >>> show_menu()
+        Welcome to the to-do list manager
+        Please select an action
+        "1. Add Task"
+        "2. Mark Task as Completed"
+        "3. List Tasks"
+        "4. Remove Task"
+        "5. Quit"
+    
+    Note:
+        Use the print() function to display the message.
+    
+    '''
+    print('Welcome to the to-do list manager')
+    print('Please select an action\n "1. Add Task"\n "2. Mark Task as Completed"\n "3. List Tasks"\n "4. Remove Task"\n "5. Quit"\n')
+    
 def prompt():
+    show_menu()
+    option = int(input("Enter your option: "))
     while True:
-        option = welcome()
         match option:
             case 1: 
                 add_tasks()            
@@ -90,6 +134,7 @@ def prompt():
                 print("Invalid option")
 
 def main():
+    tasks = []
     print('Welcome to the to-do list manager'):
     prompt()
 if __name__ == "__main__":
