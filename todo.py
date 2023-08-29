@@ -32,43 +32,65 @@ Testing and Submission:
         Submit the link to your GitHub repository for grading8
 '''
 tasks = []
-def add_tasks() -> list:
-    task = input('Enter the task description: ')
-    tasks.append(task)   
-    return tasks
+def add_tasks(tasks: list, task_name: str) -> list:
+    """
+    Add a new task to the list of tasks.
 
-def mark_completed():
-    return None
+    Args:
+        tasks (list): List of tasks.
+        task_description (str): Description of the task to be added.
+    """
+    tasks.append({"task_name": task_name, "completed": False})
+    print("Task added!")
+
+def mark_completed(tasks: list, task_index: int) -> None:
+    """
+    Mark a task as completed.
+
+    Args:
+        tasks (list): List of tasks.
+        task_index (int): Index of the task to be marked as completed.
+    """
+    if task_index => 0 and task_index < len(tasks):
+        if tasks[task_index]["completed"]:
+            print("Task is already completed")
+        else:
+            tasks[task_index]["completed"] = True
+            print("Task is marked as completed")
+    else:
+        print("You have entered an invalid index")
+            
+    
 def get_tasks():
     return None
 def remove_task():  
     return None
 
 
-def welcome():
+def show_menu() -> int:
     print(f'Please select an action\n "1. Add Task"\n "2. Mark Task as Completed"\n "3. List Tasks"\n "4. Remove Task"\n "5. Quit"\n')
+    option = int(input("Please select an action: "))
+    return option
 
 def prompt():
-    options = [1, 2, 3, 4, 5]
     while True:
-        welcome()
-        option = int(input("Please select an action: "))
-        if option in options:
-            match option:
-                case 1: 
-                    add_tasks()            
-                case 2:
-                    mark_completed()
-                case 3:
-                    list_tasks()
-                case 4:
-                    remove_tasks()
-                case 5:
-                    exit
-        else:
-            print("Invalid option")
+        option = welcome()
+        match option:
+            case 1: 
+                add_tasks()            
+            case 2:
+                mark_completed()
+            case 3:
+                list_tasks()
+            case 4:
+                remove_tasks()
+            case 5:
+                exit
+            case _:
+                print("Invalid option")
 
 def main():
+    print('Welcome to the to-do list manager'):
     prompt()
 if __name__ == "__main__":
     main()
